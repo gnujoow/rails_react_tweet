@@ -166,7 +166,7 @@
 /*!*****************************************************!*\
   !*** ./app/assets/frontend/component/TweetList.jsx ***!
   \*****************************************************/
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
@@ -175,6 +175,12 @@
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _Tweet = __webpack_require__(/*! ./Tweet */ 3);
+	
+	var _Tweet2 = _interopRequireDefault(_Tweet);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -200,44 +206,7 @@
 	        React.createElement(
 	          "ul",
 	          { className: "collection" },
-	          React.createElement(
-	            "li",
-	            { className: "collection-item avatar" },
-	            React.createElement(
-	              "i",
-	              { className: "material-icons circle" },
-	              "일등"
-	            ),
-	            React.createElement(
-	              "span",
-	              { className: "title" },
-	              "내용"
-	            ),
-	            React.createElement(
-	              "p",
-	              null,
-	              "First Line"
-	            )
-	          ),
-	          React.createElement(
-	            "li",
-	            { className: "collection-item avatar" },
-	            React.createElement(
-	              "i",
-	              { className: "material-icons circle" },
-	              "이둥"
-	            ),
-	            React.createElement(
-	              "span",
-	              { className: "title" },
-	              "내용"
-	            ),
-	            React.createElement(
-	              "p",
-	              null,
-	              "First Line"
-	            )
-	          )
+	          React.createElement(_Tweet2.default, null)
 	        )
 	      );
 	    }
@@ -247,6 +216,66 @@
 	}(React.Component);
 	
 	exports.default = TweetList;
+
+/***/ },
+/* 3 */
+/*!*************************************************!*\
+  !*** ./app/assets/frontend/component/Tweet.jsx ***!
+  \*************************************************/
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Tweet = function (_React$Component) {
+	  _inherits(Tweet, _React$Component);
+	
+	  function Tweet() {
+	    _classCallCheck(this, Tweet);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Tweet).apply(this, arguments));
+	  }
+	
+	  _createClass(Tweet, [{
+	    key: "render",
+	    value: function render() {
+	      return React.createElement(
+	        "li",
+	        { className: "collection-item avatar" },
+	        React.createElement(
+	          "i",
+	          { className: "material-icons circle" },
+	          "일등"
+	        ),
+	        React.createElement(
+	          "span",
+	          { className: "title" },
+	          "내용"
+	        ),
+	        React.createElement(
+	          "p",
+	          null,
+	          "First Line"
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Tweet;
+	}(React.Component);
+	
+	exports.default = Tweet;
 
 /***/ }
 /******/ ]);
