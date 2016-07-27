@@ -80,12 +80,28 @@
 	  }
 	
 	  _createClass(Main, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      var _this2 = this;
+	
+	      $.ajax("/tweets").success(function (data) {
+	        return _this2.setState({ tweetsList: data });
+	      }).error(function (error) {
+	        return console.log(error);
+	      });
+	    }
+	  }, {
 	    key: "addTweet",
 	    value: function addTweet(tweetToAddd) {
-	      var newTweetsList = this.state.tweetsList;
-	      newTweetsList.unshift({ id: Date.now(), name: '손님', body: tweetToAddd });
+	      var _this3 = this;
 	
-	      this.setState({ tweetsList: newTweetsList });
+	      $.post("/tweets", { body: tweetToAddd }).success(function (savedTweet) {
+	        var newTweetsList = _this3.state.tweetsList;
+	        newTweetsList.unshift(savedTweet);
+	        _this3.setState({ tweetsList: newTweetsList });
+	      }).error(function (error) {
+	        return console.log(error);
+	      });
 	    }
 	  }, {
 	    key: "render",
@@ -147,7 +163,7 @@
 	      event.preventDefault();
 	      this.props.sendTweet(this.refs.tweetTextArea.value);
 	      this.refs.tweetTextArea.value = '';
-	      console.log("sendTweet " + event);
+	      console.log(event);
 	    }
 	  }, {
 	    key: "render",

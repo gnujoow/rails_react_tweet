@@ -6,11 +6,19 @@ class Main extends React.Component {
     super(props);
     this.state = { tweetsList: [] }
   }
+  componentDidMount() {
+    $.ajax("/tweets")
+    .success(data => this.setState({ tweetsList: data}))
+    .error(error => console.log(error));
+  }
   addTweet(tweetToAddd){
-    let newTweetsList = this.state.tweetsList;
-    newTweetsList.unshift({ id: Date.now(), name: '손님', body: tweetToAddd});
-
-    this.setState({ tweetsList: newTweetsList});
+    $.post("/tweets", { body: tweetToAddd})
+    .success( savedTweet => {
+      let newTweetsList = this.state.tweetsList;
+      newTweetsList.unshift(savedTweet);
+      this.setState({ tweetsList: newTweetsList});
+    })
+    .error(error => console.log(error));
   }
   render() {
     return(
