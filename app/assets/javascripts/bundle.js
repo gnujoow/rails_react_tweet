@@ -67,6 +67,8 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	var mockTweets = [{ id: 1, name: 'good man', body: 'hungry' }, { id: 2, name: 'good man1', body: 'hungry1' }, { id: 3, name: 'good man2', body: 'hungry2' }];
+	
 	var Main = function (_React$Component) {
 	  _inherits(Main, _React$Component);
 	
@@ -83,7 +85,7 @@
 	        "div",
 	        { className: "container" },
 	        React.createElement(_TweetBox2.default, null),
-	        React.createElement(_TweetList2.default, null)
+	        React.createElement(_TweetList2.default, { tweets: mockTweets })
 	      );
 	    }
 	  }]);
@@ -174,6 +176,8 @@
 	  value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _Tweet = __webpack_require__(/*! ./Tweet */ 3);
@@ -200,13 +204,16 @@
 	  _createClass(TweetList, [{
 	    key: "render",
 	    value: function render() {
+	      var tweets = this.props.tweets.map(function (tweet) {
+	        return React.createElement(_Tweet2.default, _extends({ key: tweet.id }, tweet));
+	      });
 	      return React.createElement(
 	        "div",
 	        null,
 	        React.createElement(
 	          "ul",
 	          { className: "collection" },
-	          React.createElement(_Tweet2.default, null)
+	          tweets
 	        )
 	      );
 	    }
@@ -256,17 +263,17 @@
 	        React.createElement(
 	          "i",
 	          { className: "material-icons circle" },
-	          "일등"
+	          ":)"
 	        ),
 	        React.createElement(
 	          "span",
 	          { className: "title" },
-	          "내용"
+	          this.props.name
 	        ),
 	        React.createElement(
 	          "p",
 	          null,
-	          "First Line"
+	          this.props.body
 	        )
 	      );
 	    }
