@@ -67,25 +67,34 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var mockTweets = [{ id: 1, name: 'good man', body: 'hungry' }, { id: 2, name: 'good man1', body: 'hungry1' }, { id: 3, name: 'good man2', body: 'hungry2' }];
-	
 	var Main = function (_React$Component) {
 	  _inherits(Main, _React$Component);
 	
-	  function Main() {
+	  function Main(props) {
 	    _classCallCheck(this, Main);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Main).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this, props));
+	
+	    _this.state = { tweetsList: [] };
+	    return _this;
 	  }
 	
 	  _createClass(Main, [{
+	    key: "addTweet",
+	    value: function addTweet(tweetToAddd) {
+	      var newTweetsList = this.state.tweetsList;
+	      newTweetsList.unshift({ id: Date.now(), name: '손님', body: tweetToAddd });
+	
+	      this.setState({ tweetsList: newTweetsList });
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      return React.createElement(
 	        "div",
 	        { className: "container" },
-	        React.createElement(_TweetBox2.default, null),
-	        React.createElement(_TweetList2.default, { tweets: mockTweets })
+	        React.createElement(_TweetBox2.default, { sendTweet: this.addTweet.bind(this) }),
+	        React.createElement(_TweetList2.default, { tweets: this.state.tweetsList })
 	      );
 	    }
 	  }]);
@@ -130,6 +139,14 @@
 	  }
 	
 	  _createClass(TweetBox, [{
+	    key: "sendTweet",
+	    value: function sendTweet(event) {
+	      event.preventDefault();
+	      this.props.sendTweet(this.refs.tweetTextArea.value);
+	      this.refs.tweetTextArea.value = '';
+	      console.log("sendTweet " + event);
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      return React.createElement(
@@ -137,7 +154,7 @@
 	        { className: "row" },
 	        React.createElement(
 	          "form",
-	          null,
+	          { onSubmit: this.sendTweet.bind(this) },
 	          React.createElement(
 	            "div",
 	            { className: "input-field" },
@@ -146,10 +163,10 @@
 	              null,
 	              "what you reckon?"
 	            ),
-	            React.createElement("textarea", { className: "materialize-textarea" }),
+	            React.createElement("textarea", { className: "materialize-textarea", ref: "tweetTextArea" }),
 	            React.createElement(
 	              "button",
-	              { className: "btn right" },
+	              { className: "btn right", type: "submit" },
 	              "공유"
 	            )
 	          )
