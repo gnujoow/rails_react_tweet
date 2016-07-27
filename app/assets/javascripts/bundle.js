@@ -103,7 +103,10 @@
 	}(React.Component);
 	
 	var documentReady = function documentReady() {
-	  ReactDOM.render(React.createElement(Main, null), document.getElementById('main'));
+	  var reactNode = document.getElementById('main');
+	  if (reactNode) {
+	    ReactDOM.render(React.createElement(Main, null), document.getElementById('main'));
+	  }
 	};
 	
 	$(documentReady);

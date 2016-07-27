@@ -23,10 +23,13 @@ class Main extends React.Component {
 }
 
 let documentReady = () =>{
-  ReactDOM.render(
-      <Main />,
-      document.getElementById('main')
-  );
+  let reactNode = document.getElementById('main');
+  if(reactNode) {
+    ReactDOM.render(
+        <Main />,
+        document.getElementById('main')
+    );
+  }
 };
 
 $(documentReady);
