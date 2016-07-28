@@ -7,9 +7,4 @@ class TweetsController < ApplicationController
     tweet = Tweet.create(body: params[:body], user_id: current_user.id)
     render json: tweet
   end
-
-  def gravatar
-    hash = Digest::MD5.hexdigest(user.email)
-    "https://www.gravatar.com/avatar/#{hash}"
-  end
 end

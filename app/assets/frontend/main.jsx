@@ -37,19 +37,19 @@ class Main extends React.Component {
     console.log(5, "Main._onChange");
     this.setState(getAppState());
   }
-  addTweet(tweetToAddd){
-    // $.post("/tweets", { body: tweetToAddd})
-    // .success( savedTweet => {
-    //   let newTweetsList = this.state.tweetsList;
-    //   newTweetsList.unshift(savedTweet);
-    //   this.setState(this.formattedTweets(newTweetsList));
-    // })
-    // .error(error => console.log(error));
-  }
+  // addTweet(tweetToAddd){
+  //   $.post("/tweets", { body: tweetToAddd})
+  //   .success( savedTweet => {
+  //     let newTweetsList = this.state.tweetsList;
+  //     newTweetsList.unshift(savedTweet);
+  //     this.setState(this.formattedTweets(newTweetsList));
+  //   })
+  //   .error(error => console.log(error));
+  // }
   render() {
     return(
       <div className ="container">
-        <TweetBox sendTweet={this.addTweet.bind(this)} />
+        <TweetBox />
         <TweetList tweets={this.state.tweetsList} />
       </div>
     );
