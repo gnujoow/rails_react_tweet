@@ -2,7 +2,7 @@ import AppDispatcher from "../dispatcher";
 import ActionTypes from "../constants";
 import AppEventEmitter from "./AppEventEmitter"
 
-let _users = [{name: "hey"}];
+let _users = [ {id: 1,name: "hey"},{id: 2,name: "hhey"}];
 
 class UserEventEmitter extends AppEventEmitter {
   getAll() {
@@ -14,6 +14,10 @@ let UserStore = new UserEventEmitter();
 
 AppDispatcher.register (action => {
   switch(action.actionType){
+    case ActionTypes.RECEIVED_USERS:
+      _users = action.rawUsers;
+      UserStore.emitChange();
+      break;
     default ://no op
   }
 });
