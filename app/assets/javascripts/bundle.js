@@ -28760,6 +28760,8 @@
 	
 	var _UserActions2 = _interopRequireDefault(_UserActions);
 	
+	var _reactRouter = __webpack_require__(/*! react-router */ 1);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28829,6 +28831,11 @@
 	          'ul',
 	          { className: 'collection' },
 	          users
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/' },
+	          '돌아가기'
 	        )
 	      );
 	    }
